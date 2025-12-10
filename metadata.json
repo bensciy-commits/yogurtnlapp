@@ -1,0 +1,5 @@
+{
+  "name": "Roblox Script Generator",
+  "description": "An AI-powered dashboard to brainstorm and generate advanced Lua scripts for Roblox games using libraries like Rayfield and Fluent.",
+  "requestFramePermissions": []
+}
