@@ -6,7 +6,7 @@ import { ScriptGeneratorModal } from './components/ScriptGeneratorModal';
 import { IconSparkles, IconGamepad, IconZap, IconTerminal, IconVideo } from './components/Icons';
 
 const POPULAR_GAMES = [
-  "Murder Mystery 2", "Doors Floor 1", "The Glass Bridge", "Blox Fruits", "Pet Simulator 99", "BedWars",
+  "Murder Mystery 2", "Doors Floor 1", "The Glass Bridge", "FNAF: Co-op", "Blox Fruits", "Pet Simulator 99", "BedWars",
 ];
 
 function App() {
@@ -81,6 +81,15 @@ function App() {
     });
   };
 
+  const handleFnafKit = () => {
+    setGameName("FNAF: Co-op");
+    setSelectedIdea({
+      title: "FNAF Co-op God Mode",
+      description: "Auto Door (FNAF 1), Auto Mask (FNAF 2), Animatronic ESP (Red), Player ESP (Green), FullBright (No Fog), Noclip (Toggle), Fly (CFrame).",
+      difficulty: Difficulty.Insane,
+    });
+  };
+
   const handleCustomGenerate = () => {
     if (!gameName.trim() || !customTitle.trim() || !customDescription.trim()) {
       setError("Please fill in all fields for the custom script.");
@@ -109,6 +118,7 @@ function App() {
   const isMM2 = gameName.toLowerCase().includes("murder mystery 2") || gameName.toLowerCase().includes("mm2");
   const isDoors = gameName.toLowerCase().includes("doors");
   const isGlassBridge = gameName.toLowerCase().includes("glass bridge");
+  const isFnaf = gameName.toLowerCase().includes("fnaf") || gameName.toLowerCase().includes("five nights");
 
   return (
     <div className="min-h-screen flex text-slate-200 font-sans selection:bg-primary-500/30 selection:text-white">
@@ -257,6 +267,16 @@ function App() {
                         >
                           <IconGamepad className="w-5 h-5" />
                           Bridge God Mode
+                        </button>
+                      )}
+                      
+                      {isFnaf && (
+                        <button
+                          onClick={handleFnafKit}
+                          className="flex-1 xl:flex-none px-6 py-4 bg-orange-600/20 hover:bg-orange-600/30 text-orange-300 font-bold rounded-lg border border-orange-500/30 hover:border-orange-500/50 transition-all active:scale-95 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(249,115,22,0.15)] min-w-[140px] whitespace-nowrap animate-in zoom-in duration-300"
+                        >
+                          <IconGamepad className="w-5 h-5" />
+                          FNAF OP Kit
                         </button>
                       )}
 

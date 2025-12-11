@@ -235,6 +235,24 @@ export const generateLuaScript = async (
          - **Important**: The "Step" might be in a folder. Use 'workspace:GetDescendants()' once on enable, then listen for new steps.`
       : "";
 
+    // Specific logic for FNAF: Co-op
+    const fnafContext = (gameName.toLowerCase().includes("fnaf") || gameName.toLowerCase().includes("five nights"))
+      ? `\n\n### SPECIFIC GAME LOGIC: FNAF CO-OP
+         - **ESP Requirements**:
+           - **Animatronics**: Loop 'workspace' for Models with "Animatronic" in name or specific names (Freddy, Bonnie, Chica, Foxy, etc.). Highlight RED.
+           - **Players**: Highlight GREEN.
+         - **Auto Door (FNAF 1 Map)**:
+           - Check distance of Animatronics to the Office Doors.
+           - If distance < 15 studs, fire the Door Button ClickDetector (usually named "DoorButton" or similar).
+           - Open door when distance > 25.
+         - **Auto Mask (FNAF 2 Map)**:
+           - If Animatronic is in the Office (check Region3 or Magnitude < 10 from LocalPlayer), Equip the "Mask" tool from Backpack.
+           - Unequip when safe.
+         - **Utility**:
+           - **FullBright**: Force Lighting.Brightness = 2, FogEnd = 100000, GlobalShadows = false.
+           - **Movement**: Include Noclip (CanCollide=false loop) and Fly (CFrame) as requested.`
+      : "";
+
     // Detailed implementation instructions for the Universal Kit to ensure it works
     const kitContext = includeUniversalKit 
       ? `\n\n### UNIVERSAL KIT REQUIREMENT (CRITICAL)
@@ -334,6 +352,7 @@ export const generateLuaScript = async (
     ${mm2Context}
     ${doorsContext}
     ${glassBridgeContext}
+    ${fnafContext}
     ${kitContext}
 
     4. **Safety & Persistence (CRITICAL)**: 
